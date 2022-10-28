@@ -1,0 +1,32 @@
+<%- include('layout.ejs') %>
+<div style="margin:10% 25% 10% 25%;">
+  <h1 style="margin-bottom:50px;"><%= title %></h1>
+  <div>
+    <form id="getInfo" action="/login" method="GET"></form>
+    <div class="form-group row">
+      <label class="col-sm col-form-label" for="inputEmail">User Id</label>
+      <div class="col-sm">
+        <input class="form-control" id="inputEmail3" type="text" placeholder="User Id" form="getInfo" value="TS4866" name="Id"/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm col-form-label" for="inputPassword">Password</label>
+      <div class="col-sm">
+        <input class="form-control" id="inputPassword3" type="password" form="getInfo" placeholder="Password" value="ts4866" name="pass"/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm col-form-label" for="inputPlex">System Plex</label>
+      <div class="col-sm">
+        <input class="form-control" id="inputPassword3" type="text" form="getInfo" placeholder="System Plex" value="rs23" name="plex"/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm">
+        <button class="btn btn-primary" type="submit" form="getInfo">Sign in</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,132 @@
+<%- include('layout.ejs') %>
+<%- include('navBarHeader.ejs') %>   
+<div class="container-fluid">
+  <h1 class="h3 mb-2">Parameter Declaration</h1>
+  <div class="card shadow mb-4" style="text-align:center;margin: 30px; border:2px solid black">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary" style="color:#f1f4f6; font-size:18px;">Declare Input Parameters for Host Instance Customization</h6>
+    </div>
+    <div class="card-body" style="text-align:center;">
+      <div class="table-responsive">
+        <form action="/params" method="POST" id="getParam">
+          <div class="container">
+            <ul class="nav nav-tabs col-sm-11" style="border: 2px solid black; background-color: lightyellow;">
+              <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">User Parameter</a></li>
+              <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#menu1" role="tab">DB2 Parameter</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade" id="home" role="tabpanel">
+                <p><b>USER PARAMETERS </b></p>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="SAMPHLQ">SAMPHLQ</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="samphlq" type="text" value="TS4866.BJT.TEST" name="samphlq"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="BJTHLQ">BJTHLQ</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="bjthlq" type="text" value="RSQA.BJT310.IBMTAPE" name="bjthlq"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="PROCLIB">PROCLIB</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="proclib" type="text" value="ROCKET.USER.PROCLIB" name="proclib"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="EXEC">EXEC</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="exec" type="text" value="ROCKET.USER.EXEC" name="exec"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="BJTNAME">BJTNAME</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="bjtname" type="text" value="BJTTEST" name="bjtname"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="PORT">ARA_PORT</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="port" type="number" value="12381" name="port"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="HOST">ARA_HOST</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="host" type="text" value="127.0.0.1" name="host"/>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade in active" id="menu1">
+                <p><b>DB2 PARAMETERS</b></p>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="SDSNEXIT">SDSNEXIT</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="sdsnexit" type="text" value="LA1A.SDSNEXIT" name="sdsnexit"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="SDSNLOAD">SDSNLOAD</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="sdsnload" type="text" value="DSN.VC10.SDSNLOAD" name="sdsnload"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="DB2SSID">DB2SSID</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="db2ssid" type="text" value="LA1A" name="db2ssid"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="BJTBASE">BJTBASE</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="bjtbase" type="text" value="BJTBTST" name="bjtbase"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="BJTQUAL">BJTQUAL</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="bjtqual" type="text" value="BJTQTST" name="bjtqual"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="OWNER">OWNER</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="owner" type="text" value="TS4866" name="owner"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="BJTPLAN">BJTPLAN</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="bjtplan" type="text" value="BJTPTST" name="bjtplan"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="RUNLIB">RUNLIB</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="runlib" type="text" value="DSN.VC10.RUNLIB.LOAD" name="runlib"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="BJTCOL">BJTCOL</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" id="bjtcol" type="text" value="BJTTECL" name="bjtcol"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button class="btn btn-primary" id="submitParameters" type="submit" form="getParam">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('navBarFooter.ejs') %>

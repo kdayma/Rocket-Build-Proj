@@ -1,0 +1,136 @@
+<%- include('layout.ejs') %>
+<%- include('navBarHeader.ejs') %>
+<style>
+  .loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333333;
+  transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loaderInfo {
+  color: aquamarine;
+  font-size: x-large;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+}
+
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* .loader::after {
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 15px solid #dddddd;
+  border-top-color: #009578;
+  border-radius: 50%;
+  animation: loading 0.75s ease infinite;
+}*/ 
+
+@keyframes loading {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.mycontainer {
+  width: 100%;
+  height: 220px;
+  position: relative;
+}
+
+.mycontainer>div {
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #ffe221;
+  opacity: 0;
+  height: 0px;
+  }
+.mycontainer>div:nth-child(1){
+  animation: animation 32s infinite;
+  animation-delay: 4s;
+}
+.mycontainer>div:nth-child(2){
+  animation: animation 32s infinite;
+  animation-delay: 8s;
+}
+.mycontainer>div:nth-child(3){
+  animation: animation 32s infinite;
+  animation-delay: 12s;
+}
+.mycontainer>div:nth-child(4){
+  animation: animation 32s infinite;
+  animation-delay: 16s;
+}
+.mycontainer>div:nth-child(5){
+  animation: animation 32s infinite;
+  animation-delay: 20s;
+}
+.mycontainer>div:nth-child(6){
+  animation: animation 32s infinite;
+  animation-delay: 24s;
+}
+.mycontainer>div:nth-child(7){
+  animation: animation 32s infinite;
+  animation-delay: 28s;
+}
+
+@keyframes animation {
+    0% {opacity: 0; height: auto;}
+    16% {opacity: 1;}
+    33% {opacity: 0; height: 0px;}
+    100% {opacity: 0; height: 0px;}
+}
+
+</style>
+<script type="text/javascript">
+  function submitJob () {
+    const loader = document.querySelector(".loader");
+    loader.classList.remove("loader--hidden");
+    //loader.innerHTML= "Submitting Job In Sequence...";
+    loader.addEventListener("transitionend", () => {
+    document.body.removeChild(loader);
+  });
+    var path = window.location;
+    console.log(path.pathname);
+    window.location.href = path.pathname + "/submitjced"; 
+  }
+</script>
+<div class="alert alert-success" role="alert" style="margin-top: 20px;">
+    <strong><%= success %></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div style="background-color: #cdd9ed; margin: 150px 350px 200px; padding: 30px; text-align: center; ">
+    <h1 style="margin-top: -12px;" ><%= title %></h1>
+    <button type="button" id="Subjcedbtn" class="btn btn-primary" onclick="submitJob()" style="
+      margin-top: 30px;
+    ">
+      Create Instance
+    </button>
+    <div class="loader loader--hidden loaderInfo">
+      <div class="mycontainer">
+        <div>Submitting Job in sequence...</div>
+        <div>jced job is being submitted...</div>
+        <div>jcdb job is being submitted...</div>
+        <div>jcbi job is being submitted...</div>
+        <div>jcbu job is being submitted...</div>
+        <div>jcbx job is being submitted...</div>
+        <div>cnvpm job is being submitted...</div>
+      </div>
+    </div>
+</div>
+<%- include('navBarFooter.ejs') %>

@@ -1,0 +1,38 @@
+<%- include('layout.ejs') %>
+<%- include('navBarHeader.ejs') %>
+<html>
+	<head>
+		<style>
+        .box-shadow {
+            font-family: cursive, sans-serif;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 20px 23px #606161;
+        }
+		</style>
+
+	</head>
+	<body>
+		<div class="alert alert-warning" role="alert" style="margin-top: 20px; background-color: #ebd488;">
+			<strong><%= success %></strong>
+			<% if (success.search("successfully") > 0) { %>
+				<button type="button" class="btn btn-info">
+					Go To Web Instance Creation
+				</button>
+			<% } %>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div style="height: auto; width: 100%;">
+			<div style="width: 100%; height: auto; text-align: center;" class="box-shadow">
+				<h1>Spool Data</h1>
+			</div>
+			<div style="margin-top: 100px; height: auto;" class="box-shadow">
+			  <pre style="background-color: #c4d5d8; font-size: 15px;"><%= spoolContent %></pre>
+			</div>
+		</div>
+	</body>
+</html>
+<%- include('navBarFooter.ejs') %>
