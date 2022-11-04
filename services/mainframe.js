@@ -25,7 +25,7 @@ class Mainframe {
         });
         return result;*/
         const data = request.body;
-        const dataSet_name = "TS4866.BJT.TEST.SBJTSAMP(BJT@PRE1)";
+        const dataSet_name = data.samphlq+".SBJTSAMP(BJT@PRE1)";
         let result = "";
         const response = await zos_files_for_zowe_sdk_1.Get.dataSet(session, dataSet_name);
         result = response.toString('ascii');
@@ -48,20 +48,20 @@ class Mainframe {
         result = result.replaceAll('#tcpip_host_name_for_the_itom_stc', data.host);
         result = result.replaceAll('#tcpip_port_for_ara', data.port);
 
-        const predDataset = "TS4866.BJT.TEST.SBJTSAMP(BJT@PRED)";
+        const predDataset = data.samphlq+".SBJTSAMP(BJT@PRED)";
         const uploadPredResponse =  await zos_files_for_zowe_sdk_1.Upload.bufferToDataSet(session,result,predDataset);
         if (uploadPredResponse.success === false ) {
             return "Member updation  for pred failed!!";
         }
         else {
-            const jcedDataSet = "TS4866.BJT.TEST.SBJTSAMP(BJT@JCE1)";
+            const jcedDataSet = data.samphlq+".SBJTSAMP(BJT@JCE1)";
             let jcedContent = "";
             const jcedContentResponse = await zos_files_for_zowe_sdk_1.Get.dataSet(session, jcedDataSet);
             jcedContent = jcedContentResponse.toString('ascii');
             jcedContent = jcedContent.replaceAll('#samphlq', data.samphlq);
             jcedContent = jcedContent.replaceAll('#bjthlq', data.bjthlq);
 
-            const jcedDataset = "TS4866.BJT.TEST.SBJTSAMP(BJT@JCED)";
+            const jcedDataset = data.samphlq+".SBJTSAMP(BJT@JCED)";
             const uploadJcedResponse =  await zos_files_for_zowe_sdk_1.Upload.bufferToDataSet(session,jcedContent,jcedDataset);
             if (uploadJcedResponse === false) {
                 return "Member updation for jced failed!!";
@@ -71,8 +71,8 @@ class Mainframe {
 
     async getJobResult() {
         const session = new imperative_1.Session(this.profile);
-
-        const jcedJob  = "TS4866.BJT.TEST.SBJTSAMP(BJT@JCED)";
+        var samphlq = store.get('samphlq');
+        const jcedJob  = samphlq+".SBJTSAMP(BJT@JCED)";
         const jcedResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcedJob);
         console.log(jcedResponse);
         const fileParams1Jced = {
@@ -91,7 +91,7 @@ class Mainframe {
         }
         if (jcedResponse.retcode === 'CC 0000') {
             const jcedContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jced);
-            const jcdbJob  = "TS4866.BJT.TEST.SBJTSAMP(BJT@JCDB)";
+            const jcdbJob  = samphlq+".SBJTSAMP(BJT@JCDB)";
             const jcdbResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcdbJob);
             console.log(jcdbResponse);
             const fileParams1Jcdb = {
@@ -111,7 +111,7 @@ class Mainframe {
 
             if (jcdbResponse.retcode === 'CC 0000') {
                 const jcdbContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcdb);
-                const jcbiJob  = "TS4866.BJT.TEST.SBJTSAMP(BJT@JCBI)";
+                const jcbiJob  = samphlq+".SBJTSAMP(BJT@JCBI)";
                 const jcbiResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcbiJob);
                 const fileParams1Jcbi = {
                     jobid : jcbiResponse.jobid,
@@ -129,7 +129,7 @@ class Mainframe {
                 }
                 if (jcbiResponse.retcode === 'CC 0000') {
                     const jcbiContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcbi);
-                    const jcbuJob  = "TS4866.BJT.TEST.SBJTSAMP(BJT@JCBU)";
+                    const jcbuJob  = samphlq+".SBJTSAMP(BJT@JCBU)";
                     const jcbuResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcbuJob);
                     const fileParams1Jcbu = {
                         jobid : jcbuResponse.jobid,
@@ -147,7 +147,7 @@ class Mainframe {
                     }
                     if (jcbuResponse.retcode === 'CC 0000') {
                         const jcbuContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcbu);
-                        const jcbxJob  = "TS4866.BJT.TEST.SBJTSAMP(BJT@JCBX)";
+                        const jcbxJob  = samphlq+".SBJTSAMP(BJT@JCBX)";
                         const jcbxResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcbxJob);
                         const fileParams1Jcbx = {
                             jobid : jcbxResponse.jobid,
@@ -166,7 +166,7 @@ class Mainframe {
 
                         if (jcbxResponse.retcode === 'CC 0000' || jcbxResponse.retcode === 'CC 0004') {
                             const jcbxContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcbx);
-                            const cnvpmJob  = "TS4866.BJT.TEST.SBJTSAMP(BJTCNVPM)";
+                            const cnvpmJob  = samphlq+".SBJTSAMP(BJTCNVPM)";
                             const cnvpmResponse = await cli_1.SubmitJobs.submitJobNotify(session,cnvpmJob);
                             const fileParams1Cnvpm = {
                                 jobid : cnvpmResponse.jobid,
@@ -204,8 +204,7 @@ ${lineBreak}
 Cnvpm Content -:
     ${cnvpmContent}
 ${lineBreak}
-`;
-                                var samphlq = store.get('samphlq'); 
+`; 
                                 var dsn = samphlq + ".SBJTSAMP"; 
                                 const datasetProp = {
                                     dsn : dsn,
@@ -222,9 +221,9 @@ ${lineBreak}
                                 };
                                 const response = await zos_files_for_zowe_sdk_1.Copy.dataSet(session,toDatasetOptions,fromDatasetOptions);
                                 console.log(response);
-                                const rdefJob  = "TS4866.BJT.TEST.SBJTSAMP(BJT#RDEF)";
+                                const rdefJob  = samphlq+".SBJTSAMP(BJT#RDEF)";
                                 const rdefResponse = await cli_1.SubmitJobs.submitJobNotify(session,rdefJob);
-                                const rperJob  = "TS4866.BJT.TEST.SBJTSAMP(BJT#RPER)";
+                                const rperJob  = samphlq+".SBJTSAMP(BJT#RPER)";
                                 const rperResponse = await cli_1.SubmitJobs.submitJobNotify(session,rperJob);
                                  
                                 var execDsn = samphlq + ".SBJTEXEC"; 
