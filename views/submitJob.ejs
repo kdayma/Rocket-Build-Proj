@@ -26,7 +26,7 @@
   visibility: hidden;
 }
 
-/* .loader::after {
+.loader::after {
   content: "";
   width: 75px;
   height: 75px;
@@ -34,7 +34,7 @@
   border-top-color: #009578;
   border-radius: 50%;
   animation: loading 0.75s ease infinite;
-}*/ 
+}
 
 @keyframes loading {
   from {
@@ -45,7 +45,7 @@
   }
 }
 
-.mycontainer {
+/* .mycontainer {
   width: 100%;
   height: 220px;
   position: relative;
@@ -85,21 +85,21 @@
 .mycontainer>div:nth-child(7){
   animation: animation 32s infinite;
   animation-delay: 28s;
-}
+} 
 
 @keyframes animation {
     0% {opacity: 0; height: auto;}
     16% {opacity: 1;}
     33% {opacity: 0; height: 0px;}
     100% {opacity: 0; height: 0px;}
-}
+} */
 
 </style>
 <script type="text/javascript">
   function submitJob () {
     const loader = document.querySelector(".loader");
     loader.classList.remove("loader--hidden");
-    //loader.innerHTML= "Submitting Job In Sequence...";
+    loader.innerHTML= "Submitting Job In Sequence...";
     loader.addEventListener("transitionend", () => {
     document.body.removeChild(loader);
   });
@@ -121,16 +121,6 @@
     ">
       Create Instance
     </button>
-    <div class="loader loader--hidden loaderInfo">
-      <div class="mycontainer">
-        <div>Submitting Job in sequence...</div>
-        <div>jced job is being submitted...</div>
-        <div>jcdb job is being submitted...</div>
-        <div>jcbi job is being submitted...</div>
-        <div>jcbu job is being submitted...</div>
-        <div>jcbx job is being submitted...</div>
-        <div>cnvpm job is being submitted...</div>
-      </div>
-    </div>
+    <div class="loader loader--hidden loaderInfo"></div>
 </div>
 <%- include('navBarFooter.ejs') %>
