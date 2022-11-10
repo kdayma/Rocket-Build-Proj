@@ -113,6 +113,7 @@ class Mainframe {
                 const jcdbContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcdb);
                 const jcbiJob  = samphlq+".SBJTSAMP(BJT@JCBI)";
                 const jcbiResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcbiJob);
+                console.log(jcbiResponse);
                 const fileParams1Jcbi = {
                     jobid : jcbiResponse.jobid,
                     jobname : jcbiResponse.jobname,
@@ -131,6 +132,7 @@ class Mainframe {
                     const jcbiContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcbi);
                     const jcbuJob  = samphlq+".SBJTSAMP(BJT@JCBU)";
                     const jcbuResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcbuJob);
+                    console.log(jcbuResponse);
                     const fileParams1Jcbu = {
                         jobid : jcbuResponse.jobid,
                         jobname : jcbuResponse.jobname,
@@ -149,6 +151,7 @@ class Mainframe {
                         const jcbuContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcbu);
                         const jcbxJob  = samphlq+".SBJTSAMP(BJT@JCBX)";
                         const jcbxResponse = await cli_1.SubmitJobs.submitJobNotify(session,jcbxJob);
+                        console.log(jcbxResponse);
                         const fileParams1Jcbx = {
                             jobid : jcbxResponse.jobid,
                             jobname : jcbxResponse.jobname,
@@ -168,6 +171,7 @@ class Mainframe {
                             const jcbxContent = await cli_1.GetJobs.getSpoolContent(session,fileParams2Jcbx);
                             const cnvpmJob  = samphlq+".SBJTSAMP(BJTCNVPM)";
                             const cnvpmResponse = await cli_1.SubmitJobs.submitJobNotify(session,cnvpmJob);
+                            console.log(cnvpmResponse);
                             const fileParams1Cnvpm = {
                                 jobid : cnvpmResponse.jobid,
                                 jobname : cnvpmResponse.jobname,
@@ -223,8 +227,10 @@ ${lineBreak}
                                 console.log(response);
                                 const rdefJob  = samphlq+".SBJTSAMP(BJT#RDEF)";
                                 const rdefResponse = await cli_1.SubmitJobs.submitJobNotify(session,rdefJob);
+                                console.log(rdefResponse);
                                 const rperJob  = samphlq+".SBJTSAMP(BJT#RPER)";
                                 const rperResponse = await cli_1.SubmitJobs.submitJobNotify(session,rperJob);
+                                console.log(rperResponse);
                                  
                                 var execDsn = samphlq + ".SBJTEXEC"; 
                                 const execDatasetProp = {
