@@ -1,5 +1,6 @@
 const cli_1 = require("@zowe/cli");
 const zos_files_for_zowe_sdk_1 = require("@zowe/zos-files-for-zowe-sdk");
+const zos_files_for_zowe_console_sdk = require("@zowe/zos-console-for-zowe-sdk");
 const imperative_1 = require("@zowe/imperative");
 const store = require("store2");
 
@@ -247,6 +248,16 @@ ${lineBreak}
                                 };
                                 const copyExecResponse = await zos_files_for_zowe_sdk_1.Copy.dataSet(session,toExecDatasetOptions,fromExecDatasetOptions);
                                 console.log(copyExecResponse);
+
+                                const parms  = {
+                                    command: "S " +bjtname,
+                                    sysplexSystem: undefined,
+                                    solicitedKeyword: undefined,
+                                    async: "N"
+                                };
+
+                                const issuedCommandResponse = await zos_files_for_zowe_console_sdk.IssueCommand.issue(session, parms);
+                                console.log(issuedCommandResponse);
                                 return finalSpoolData;
                             }
                             else {
